@@ -33,17 +33,17 @@ public class PlayerController : MonoBehaviour
         //Gère le mouvement
         if (!isDead)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 Move(Vector2.left, moveSpeed);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 Move(Vector2.right, moveSpeed);
             }
 
             //stop le personnage quand on lache les inputs
-            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.RightArrow))
                 rb.velocity = new Vector2(0, rb.velocity.y);
 
             //s'assure que le personnage ne va pas trop vite.
