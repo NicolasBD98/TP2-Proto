@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerGunController : GunActions 
 {
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-        ChangeGun("BlueGun"); 
+        ChangeGun("BlueGun");
+        changePlayerLayerColor();
     }
 
     // Update is called once per frame
@@ -35,5 +38,15 @@ public class PlayerGunController : GunActions
         {
             ChangeGun("RedGun");
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            changePlayerLayerColor();
+        }
+    }
+
+    void changePlayerLayerColor()
+    {
+        player.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer de la balle.
+        player.GetComponent<Renderer>().material.color = equippedGun.BulletColor; // Change la couleur de la balle. 
     }
 }

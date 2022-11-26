@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sol
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - Water
   - UI
   - Plateforme
-  - 
-  - 
-  - 
+  - Blue
+  - Green
+  - Red
   - 
   - 
   - 
