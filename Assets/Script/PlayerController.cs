@@ -10,6 +10,12 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public int jumpCount;
     public bool isDead;
+    
+    bool isInvincible;
+    float invincibleTimer;
+    float remainingTimer;
+    
+    public GameObject menu;
 
     [SerializeField] private LayerMask PlateformeLayerMask;
 
@@ -21,6 +27,10 @@ public class PlayerController : MonoBehaviour
         jumpHeight = 10;
         jumpCount = 1;
         isDead = false;
+
+        isInvincible = false;
+        invincibleTimer = 2f;
+        remainingTimer = invincibleTimer;
 
         rb.gravityScale = 2 + this.gameObject.transform.localScale.x;
         moveSpeed = initialSpeed - this.gameObject.transform.localScale.x;
@@ -75,9 +85,34 @@ public class PlayerController : MonoBehaviour
             {
                 moveSpeed /= 2f;
             }
+
+            //menu
+            if(Input.GetKeyDown(KeyCode.Tab))
+            {
+                Time.timeScale = 0.0f;
+                menu.SetActive(true);
+            }
+            if(Input.GetKeyUp(KeyCode.Tab))
+            {
+                Time.timeScale = 1.0f;
+                menu.SetActive(false);
+            }
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if(isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if(invincibleTimer <= 0)
+            {
+                remainingTimer = invincibleTimer;
+                isInvincible = false;
+            }
+        }
     }
 
     void Move(Vector2 direction, float speed) //Fait bouger le personnage
@@ -101,5 +136,18 @@ public class PlayerController : MonoBehaviour
                 jumpCount = 1;
             }
         }
+    }
+
+    public void Invulnerabilty()
+    {
+        print("I'M INVINCIBLE");
+        isInvincible = true;
+        menu.SetActive(false);
+    }
+
+    public void Potion()
+    {
+        print("I need healing");
+        menu.SetActive(false);
     }
 }
