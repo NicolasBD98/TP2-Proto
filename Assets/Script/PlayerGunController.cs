@@ -23,41 +23,44 @@ public class PlayerGunController : GunActions
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!Input.GetKey(KeyCode.Tab))
         {
-            equippedGun.LayerName = currentLayer; 
-            ChangeGun("BlueGun");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            equippedGun.LayerName = currentLayer;
-            ChangeGun("GreenGun");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            equippedGun.LayerName = currentLayer;
-            ChangeGun("RedGun");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangePlayerLayerColor();
-            currentLayer = equippedGun.LayerName;
-        } 
-        
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            PaintItBlack();
-        }
-        BlackBonusTimer();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                equippedGun.LayerName = currentLayer;
+                ChangeGun("BlueGun");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                equippedGun.LayerName = currentLayer;
+                ChangeGun("GreenGun");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                equippedGun.LayerName = currentLayer;
+                ChangeGun("RedGun");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ChangePlayerLayerColor();
+                currentLayer = equippedGun.LayerName;
+            }
 
-        if (Input.GetMouseButtonDown(0)) //left click
-        {
-            // Récupère la position de la souris pour viser
-            Vector3 mouseInScreen = Input.mousePosition;
-            mouseInScreen.z = 10;
-            Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
-            // Tire
-            Shoot(mouseInWorld);
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                PaintItBlack();
+            }
+            BlackBonusTimer();
+
+            if (Input.GetMouseButtonDown(0)) //left click
+            {
+                // Récupère la position de la souris pour viser
+                Vector3 mouseInScreen = Input.mousePosition;
+                mouseInScreen.z = 10;
+                Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
+                // Tire
+                Shoot(mouseInWorld);
+            }
         }
     }
 

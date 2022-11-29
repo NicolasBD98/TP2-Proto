@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletDestroy : MonoBehaviour
 {
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +18,12 @@ public class BulletDestroy : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-        Destroy(this.gameObject);
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }
