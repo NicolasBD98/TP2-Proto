@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunActions : MonoBehaviour
 {
-    public GameObject weapon;
+    //public GameObject weapon;
     public Rigidbody2D bulletPrefab;
     public Gun equippedGun;
     private bool isShooting;
@@ -19,14 +19,14 @@ public class GunActions : MonoBehaviour
     {
         for (int i = 0; i < equippedGun.FireRate; i++)
         {
-            Rigidbody2D bullet = Instantiate(bulletPrefab, weapon.transform.position, transform.rotation) as Rigidbody2D;
+            Rigidbody2D bullet = Instantiate(bulletPrefab, this.transform.position, transform.rotation) as Rigidbody2D;
             bullet.gameObject.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer de la balle.
             bullet.GetComponent<Renderer>().material.color = Gun.ColorDictionnary[equippedGun.LayerName]; // Change la couleur de la balle. 
             if (isFromPlayer)
             {
                 bullet.GetComponent<BulletDestroy>().isFromPlayerGun();
             }
-            Vector3 direction = target - weapon.transform.position; // Vecteur qui va vers la cible.
+            Vector3 direction = target - this.transform.position; // Vecteur qui va vers la cible.
             direction.Normalize(); // La longueur du vecteur devient 1 (pour qu'on puisse contrôler la vitesse de la balle). 
             bullet.velocity = transform.TransformDirection(direction * equippedGun.BulletSpeed);
             yield return new WaitForSeconds(equippedGun.BulletTimer);

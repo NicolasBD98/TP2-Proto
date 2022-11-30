@@ -125,6 +125,18 @@ public class PlayerController : MonoBehaviour
                 jumpCount = 1;
             }
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            LoseLife();
+        }
+    }
+
+    public void LoseLife()
+    {
+        if (!isInvincible)
+        {
+            Debug.Log("Damage : player.");
+        }
     }
 
     public void Invulnerability()

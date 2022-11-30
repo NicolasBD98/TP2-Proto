@@ -40,4 +40,11 @@ public class Gun
         {"Green", Color.green},
         {"Black", Color.black}
     };
+
+    public static Dictionary<string, string> LayerToGun = new Dictionary<string, string>()
+    {
+        {"Blue", "BlueGun"},
+        {"Red", "RedGun"},
+        {"Green", "GreenGun"},
+    };
 }

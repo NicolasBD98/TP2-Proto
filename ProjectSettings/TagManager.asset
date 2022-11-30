@@ -7,6 +7,7 @@ TagManager:
   - Sol
   - Bullet
   - Shield
+  - Enemy
   layers:
   - Default
   - TransparentFX
