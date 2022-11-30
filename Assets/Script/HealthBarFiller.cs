@@ -4,40 +4,34 @@ using UnityEngine;
 
 public class HealthBarFiller : MonoBehaviour
 {
+
+    float smoothFactor = 4f;
+    float newWidth;
+    float maxWidth;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        newWidth = this.GetComponent<SpriteRenderer>().size.x;
+        maxWidth = this.GetComponent<SpriteRenderer>().size.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         float widthValue = this.GetComponent<SpriteRenderer>().size.x;
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+
+
+        if (newWidth != widthValue)
         {
-            if (widthValue > 0)
-            {
-                widthValue -= 0.5f;
-                this.GetComponent<SpriteRenderer>().size = new Vector2(widthValue, 0.719f);
-            } else
-            {
-                widthValue = 0f;
-                this.GetComponent<SpriteRenderer>().size = new Vector2(widthValue, 0.719f);
-            }
+            float smoothWidth = Mathf.Lerp(widthValue, newWidth, smoothFactor * Time.deltaTime);
+            this.GetComponent<SpriteRenderer>().size = new Vector2(smoothWidth, 0.719f);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            if (widthValue < 4.36f)
-            {
-                widthValue += 0.5f;
-                this.GetComponent<SpriteRenderer>().size = new Vector2(widthValue, 0.719f);
-            }
-            else
-            {
-                widthValue = 4.36f;
-                this.GetComponent<SpriteRenderer>().size = new Vector2(widthValue, 0.719f);
-            }
-        }
+        
+    }
+
+    public void fillBar(int lifePoints, int maxLife)
+    {
+        newWidth = ((float)maxWidth / maxLife) * (float)lifePoints;
     }
 }

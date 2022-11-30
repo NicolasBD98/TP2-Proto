@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PersonWithHealth
 {
     Rigidbody2D rb;
     public float moveSpeed;
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupHealth(100);
+
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         initialSpeed = 5;
         jumpHeight = 10;
@@ -38,6 +40,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateLife();
+        isDead = NoLifeLeft();
+        if (isDead)
+        {
+            Debug.Log("Player dead.");
+        }
 
         //Gère le mouvement
         if (!isDead)
@@ -135,19 +143,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            Debug.Log("Damage : player.");
+            takeDamage(5);
         }
     }
 
     public void Invulnerability()
     {
-        print("I'M INVINCIBLE");
         isInvincible = true;
         shield.SetActive(true);
     }
 
     public void Potion()
     {
-        print("I need healing");
+        Heal(10);
     }
 }

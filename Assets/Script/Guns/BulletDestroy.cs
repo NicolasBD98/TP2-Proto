@@ -28,7 +28,7 @@ public class BulletDestroy : MonoBehaviour
                 }
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Damage : enemy");
+                collision.GetComponent<EnemyController>().LoseLife();
             }
         } else
         {
