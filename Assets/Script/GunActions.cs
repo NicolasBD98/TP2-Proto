@@ -9,19 +9,23 @@ public class GunActions : MonoBehaviour
     public Gun equippedGun;
     private bool isShooting;
 
-    public void Shoot(Vector3 target)
+    public void Shoot(Vector3 target, bool isFromPlayer)
     {
         isShooting = true;
-        StartCoroutine(BulletDelay(target));
+        StartCoroutine(BulletDelay(target, isFromPlayer));
     }
 
-    public IEnumerator BulletDelay(Vector3 target)
+    public IEnumerator BulletDelay(Vector3 target, bool isFromPlayer)
     {
         for (int i = 0; i < equippedGun.FireRate; i++)
         {
             Rigidbody2D bullet = Instantiate(bulletPrefab, weapon.transform.position, transform.rotation) as Rigidbody2D;
             bullet.gameObject.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer de la balle.
             bullet.GetComponent<Renderer>().material.color = Gun.ColorDictionnary[equippedGun.LayerName]; // Change la couleur de la balle. 
+            if (isFromPlayer)
+            {
+                bullet.GetComponent<BulletDestroy>().isFromPlayerGun();
+            }
             Vector3 direction = target - weapon.transform.position; // Vecteur qui va vers la cible.
             direction.Normalize(); // La longueur du vecteur devient 1 (pour qu'on puisse contrôler la vitesse de la balle). 
             bullet.velocity = transform.TransformDirection(direction * equippedGun.BulletSpeed);

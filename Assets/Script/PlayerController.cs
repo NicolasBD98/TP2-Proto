@@ -14,10 +14,9 @@ public class PlayerController : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
     float remainingTimer;
-    
-    public GameObject menu;
 
     [SerializeField] private LayerMask PlateformeLayerMask;
+    [SerializeField] GameObject shield;
 
     // Start is called before the first frame update
     void Start()
@@ -86,17 +85,6 @@ public class PlayerController : MonoBehaviour
                 moveSpeed /= 2f;
             }
 
-            //menu
-            if(Input.GetKeyDown(KeyCode.Tab))
-            {
-                Time.timeScale = 0.0f;
-                menu.SetActive(true);
-            }
-            if(Input.GetKeyUp(KeyCode.Tab))
-            {
-                Time.timeScale = 1.0f;
-                menu.SetActive(false);
-            }
         }
 
 
@@ -106,11 +94,12 @@ public class PlayerController : MonoBehaviour
     {
         if(isInvincible)
         {
-            invincibleTimer -= Time.deltaTime;
-            if(invincibleTimer <= 0)
+            remainingTimer -= Time.deltaTime;
+            if(remainingTimer <= 0)
             {
                 remainingTimer = invincibleTimer;
                 isInvincible = false;
+                shield.SetActive(false);
             }
         }
     }
@@ -138,16 +127,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Invulnerabilty()
+    public void Invulnerability()
     {
         print("I'M INVINCIBLE");
         isInvincible = true;
-        menu.SetActive(false);
+        shield.SetActive(true);
     }
 
     public void Potion()
     {
         print("I need healing");
-        menu.SetActive(false);
     }
 }

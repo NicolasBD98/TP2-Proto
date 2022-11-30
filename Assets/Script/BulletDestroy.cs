@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDestroy : MonoBehaviour
 {
-    public GameObject player;
+    private bool fromPlayerGun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,25 @@ public class BulletDestroy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        if (fromPlayerGun) //On veut que les balles ennemies puissent toucher le joueur. 
         {
-            Destroy(this.gameObject);
+            if (!collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Shield"))
+                {
+                    Destroy(this.gameObject);
+                }
+        } else
+        {
+            if (collision.gameObject.CompareTag("Shield"))
+            {
+                Destroy(this.gameObject);
+            }
         }
         
+        
+    }
+
+    public void isFromPlayerGun ()
+    {
+        fromPlayerGun = true;
     }
 }

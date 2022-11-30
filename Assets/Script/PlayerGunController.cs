@@ -46,10 +46,6 @@ public class PlayerGunController : GunActions
                 currentLayer = equippedGun.LayerName;
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                PaintItBlack();
-            }
             BlackBonusTimer();
 
             if (Input.GetMouseButtonDown(0)) //left click
@@ -59,25 +55,25 @@ public class PlayerGunController : GunActions
                 mouseInScreen.z = 10;
                 Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
                 // Tire
-                Shoot(mouseInWorld);
+                Shoot(mouseInWorld, true);
             }
         }
     }
 
-    void ChangePlayerLayerColor()
+    private void ChangePlayerLayerColor()
     {
-        player.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer de la balle.
-        player.GetComponent<Renderer>().material.color = Gun.ColorDictionnary[equippedGun.LayerName]; // Change la couleur de la balle. 
+        player.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer du joueur.
+        player.GetComponent<Renderer>().material.color = Gun.ColorDictionnary[equippedGun.LayerName]; // Change la couleur du joueur. 
     }
 
-    void PaintItBlack()
+    public void PaintItBlack()
     {
         currentLayer = equippedGun.LayerName;
         blackBonusTimer = 5f;
         isBlack = true;
     }
 
-    void BlackBonusTimer()
+    private void BlackBonusTimer()
     {
         if (isBlack)
         {
