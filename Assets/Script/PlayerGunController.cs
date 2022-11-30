@@ -27,17 +27,14 @@ public class PlayerGunController : GunActions
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                equippedGun.LayerName = currentLayer;
                 ChangeGun("BlueGun");
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                equippedGun.LayerName = currentLayer;
                 ChangeGun("GreenGun");
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                equippedGun.LayerName = currentLayer;
                 ChangeGun("RedGun");
             }
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))

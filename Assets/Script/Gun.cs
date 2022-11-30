@@ -25,6 +25,14 @@ public class Gun
         this.LayerName = layerName;
     }
 
+    public Gun(Gun gun)
+    {
+        this.FireRate = gun.FireRate;
+        this.BulletSpeed = gun.BulletSpeed;
+        this.BulletTimer = gun.BulletTimer;
+        this.LayerName = gun.LayerName;
+    }
+
     public static Dictionary<string, Gun> GunDictionnary = new Dictionary<string, Gun>()
     {
         //Clé d'accès, Données (fireRate, bulletSpeed, BulletTimer, color)

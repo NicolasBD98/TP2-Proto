@@ -38,7 +38,7 @@ public class GunActions : MonoBehaviour
     {
         if (!isShooting) // Evite de changer de gun pendant qu'on tire
         {
-            equippedGun = Gun.GunDictionnary[accessKey];
+            equippedGun = new Gun(Gun.GunDictionnary[accessKey]);
         }
     }
 }
