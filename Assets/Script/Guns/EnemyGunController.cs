@@ -12,7 +12,7 @@ public class EnemyGunController : GunActions
     {
         ChangeGun(Gun.LayerToGun[LayerMask.LayerToName(transform.parent.gameObject.layer)]); // Le gun de l'ennemi dépend de son layer.
         player = GameObject.FindGameObjectsWithTag("Player"); // L'ennemi vise le player. 
-        StartCoroutine(ShootDelay());
+        //StartCoroutine(ShootDelay());
     }
 
     // Update is called once per frame
@@ -21,13 +21,13 @@ public class EnemyGunController : GunActions
         
     }
 
-    public IEnumerator ShootDelay()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(ShootDelayTime);
-            Shoot(player[0].transform.position, false);
-        }
+    //public IEnumerator ShootDelay()
+    //{
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(ShootDelayTime);
+    //        Shoot(player[0].transform.position, false);
+    //    }
         
-    }
+    //}
 }

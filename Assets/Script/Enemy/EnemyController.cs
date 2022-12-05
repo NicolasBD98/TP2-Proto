@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : PersonWithHealth
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
