@@ -9,8 +9,11 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        menu.GetComponent<MenuInventory>().addCollectible(collectibleType);
-        Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            menu.GetComponent<MenuInventory>().addCollectible(collectibleType);
+            Destroy(this.gameObject);
+        }
     }
 
         // Start is called before the first frame update
