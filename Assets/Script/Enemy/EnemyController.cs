@@ -5,16 +5,34 @@ using UnityEngine;
 public class EnemyController : PersonWithHealth
 {
 
+    public bool isAttacking;
+    public bool isCoolingDown;
+    public GameObject myGun;
+    public float rangeAttack;
+    public GameObject target;
+
+    [SerializeField] private LayerMask PlateformeLayerMask;
 
     // Start is called before the first frame update
     void Start()
     {
         SetupHealth(30);
+
+
+        if (myGun == null)
+        {
+            this.gameObject.transform.GetChild(0);
+        }
+
+        isAttacking = false;
+        isCoolingDown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        
         UpdateLife();
         if (NoLifeLeft())
         {
@@ -33,5 +51,14 @@ public class EnemyController : PersonWithHealth
     public void LoseLife()
     {
         takeDamage(5);
+    }
+
+    public bool HasClearShot() //vérifie s'il y a un mur entre l'ennemi et le joueur
+    {
+        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
+
+        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, target.transform.position - this.transform.position, rangeAttack, PlateformeLayerMask);
+
+        return hit.collider;
     }
 }

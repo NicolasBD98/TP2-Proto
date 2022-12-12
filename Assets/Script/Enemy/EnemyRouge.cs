@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class EnemyGreen : EnemyController
+public class EnemyRouge : EnemyController
 {
-
     float speed;
-    
+
     public float attackTimer;
     public float cooldownTimer;
-    
 
-    
 
-    
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +47,13 @@ public class EnemyGreen : EnemyController
     }
 
 
-    
+
 
     IEnumerator StartAttack()
     {
         isAttacking = true;
         yield return new WaitForSeconds(attackTimer);
-        myGun.GetComponent<EnemyGunController>().Shoot(target.transform.position,false);
+        myGun.GetComponent<EnemyGunController>().Shoot(target.transform.position, false);
         isAttacking = false;
         StartCoroutine(AttackCooldown());
     }
@@ -75,5 +73,4 @@ public class EnemyGreen : EnemyController
             speed *= -1;
         }
     }
-
 }
