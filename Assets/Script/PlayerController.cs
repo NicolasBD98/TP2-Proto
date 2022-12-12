@@ -15,6 +15,8 @@ public class PlayerController : PersonWithHealth
     float invincibleTimer;
     float remainingTimer;
 
+    Vector3 savePosition;
+
     [SerializeField] private LayerMask PlateformeLayerMask;
     [SerializeField] GameObject shield;
 
@@ -53,10 +55,12 @@ public class PlayerController : PersonWithHealth
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 Move(Vector2.left, moveSpeed);
+                isGrounded(); //checke si on est au sol pour enregistrer la position (au cas où on tombe)
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 Move(Vector2.right, moveSpeed);
+                isGrounded(); //checke si on est au sol pour enregistrer la position (au cas où on tombe)
             }
 
             //stop le personnage quand on lache les inputs
@@ -95,6 +99,14 @@ public class PlayerController : PersonWithHealth
 
         }
 
+        //Regarde si on est tombé
+        if (transform.position.y < -20f)
+        {
+            transform.position = savePosition;
+            rb.velocity = new Vector2(0, 0);
+            LoseLife();
+        }
+
 
     }
 
@@ -122,6 +134,10 @@ public class PlayerController : PersonWithHealth
         BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
 
         RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, PlateformeLayerMask);
+        if (raycastHit.collider)
+        {
+            savePosition = transform.position;
+        }
         return raycastHit.collider != null;
     }
     private void OnCollisionEnter2D(Collision2D collision)
