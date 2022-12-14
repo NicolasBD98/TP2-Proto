@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40020205}
   - component: {fileID: 40020204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40020203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0.77, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341799276}
@@ -446,10 +446,10 @@ GameObject:
   m_Component:
   - component: {fileID: 341799276}
   - component: {fileID: 341799275}
-  - component: {fileID: 341799274}
   - component: {fileID: 341799273}
   - component: {fileID: 341799272}
-  m_Layer: 7
+  - component: {fileID: 341799274}
+  m_Layer: 9
   m_Name: Ennemi Rouge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 341799271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee58d7608f905e409a0f4b20474d643, type: 3}
+  m_Script: {fileID: 11500000, guid: df831d9015d5cea45988f0025cab6784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 0
@@ -527,6 +527,7 @@ MonoBehaviour:
     m_Bits: 64
   attackTimer: 0
   cooldownTimer: 0
+  distanceTarget: 0
 --- !u!212 &341799275
 SpriteRenderer:
   m_ObjectHideFlags: 0

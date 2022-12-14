@@ -58,7 +58,7 @@ public class EnemyController : PersonWithHealth
         BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
 
         RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, target.transform.position - this.transform.position, rangeAttack, PlateformeLayerMask);
-
+        Debug.DrawRay(this.gameObject.transform.position, target.transform.position - this.transform.position, Color.red);
         return hit.collider;
     }
 }

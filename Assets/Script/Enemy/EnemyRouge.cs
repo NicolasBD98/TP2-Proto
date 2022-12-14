@@ -8,7 +8,7 @@ public class EnemyRouge : EnemyController
 
     public float attackTimer;
     public float cooldownTimer;
-
+    public float distanceTarget;
 
 
 
@@ -29,11 +29,13 @@ public class EnemyRouge : EnemyController
     {
         if (target == null)
             target = GameObject.FindGameObjectWithTag("Player");
-        float distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
-        if (distanceTarget < rangeAttack && !isCoolingDown && !isAttacking)
+        distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
+        if ((distanceTarget < rangeAttack /*&& rangeAttack > -distanceTarget*/)&& !isCoolingDown && !isAttacking)
         {
+            
             if (!HasClearShot())
             {
+                print("ok");
                 StartCoroutine(StartAttack());
             }
         }
