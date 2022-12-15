@@ -144,7 +144,6 @@ public class PlayerController : PersonWithHealth
         }
         if (raycastHit.collider != null)
         {
-            Debug.Log(raycastHit.collider);
             if (raycastHit.collider.gameObject.CompareTag("Sol"))
             {
                 return true;
