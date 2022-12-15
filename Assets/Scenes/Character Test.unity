@@ -169,6 +169,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9177813444591743959, guid: 7cea3e203cabc604c8a388340918269e, type: 3}
   player: {fileID: 1311620939}
   blackBonusTimer: 0
+  cam: {fileID: 941165393}
 --- !u!1 &87978163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2315,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0.29411766, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

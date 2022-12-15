@@ -9,6 +9,8 @@ public class PlayerGunController : GunActions
     private string currentLayer;
     private bool isBlack;
 
+    [SerializeField] Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +30,17 @@ public class PlayerGunController : GunActions
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 ChangeGun("BlueGun");
+                cam.backgroundColor = new Color(0f, 0f, 0.25f);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 ChangeGun("GreenGun");
+                cam.backgroundColor = new Color(0f, 0.15f, 0f);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 ChangeGun("RedGun");
+                cam.backgroundColor = new Color(0.2f, 0f, 0f);
             }
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
             {
