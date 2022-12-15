@@ -18,6 +18,10 @@ public class PlayerController : PersonWithHealth
     Vector3 savePosition;
 
     [SerializeField] private LayerMask PlateformeLayerMask;
+    [SerializeField] private LayerMask BlueLayerMask;
+    [SerializeField] private LayerMask RedLayerMask;
+    [SerializeField] private LayerMask GreenLayerMask;
+    [SerializeField] private LayerMask EveryColorsLayerMask;
     [SerializeField] GameObject shield;
 
     // Start is called before the first frame update
@@ -133,12 +137,21 @@ public class PlayerController : PersonWithHealth
     {
         BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
 
-        RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, PlateformeLayerMask);
+        RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, EveryColorsLayerMask);
         if (raycastHit.collider)
         {
             savePosition = transform.position;
         }
-        return raycastHit.collider != null;
+        if (raycastHit.collider != null)
+        {
+            Debug.Log(raycastHit.collider);
+            if (raycastHit.collider.gameObject.CompareTag("Sol"))
+            {
+                return true;
+            }
+        }
+        return false;
+        //return raycastHit.collider != null;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
