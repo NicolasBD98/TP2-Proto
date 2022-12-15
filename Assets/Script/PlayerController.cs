@@ -135,7 +135,7 @@ public class PlayerController : PersonWithHealth
 
     private bool isGrounded() //détecte si le personnage est par dessus le sol
     {
-        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
+        CapsuleCollider2D col = this.gameObject.GetComponent<CapsuleCollider2D>();
 
         RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, EveryColorsLayerMask);
         if (raycastHit.collider)

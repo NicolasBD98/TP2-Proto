@@ -2592,9 +2592,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1311620943}
   - component: {fileID: 1311620942}
-  - component: {fileID: 1311620941}
   - component: {fileID: 1311620940}
   - component: {fileID: 1311620944}
+  - component: {fileID: 1311620941}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2623,8 +2623,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1311620941
-BoxCollider2D:
+--- !u!70 &1311620941
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2636,19 +2636,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.0009150803}
+  m_Size: {x: 0.97, y: 0.9791574}
+  m_Direction: 0
 --- !u!212 &1311620942
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2686,8 +2676,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 825558037
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
