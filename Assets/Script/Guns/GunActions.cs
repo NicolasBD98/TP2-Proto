@@ -29,6 +29,24 @@ public class GunActions : MonoBehaviour
             Vector3 direction = target - this.transform.position; // Vecteur qui va vers la cible.
             direction.Normalize(); // La longueur du vecteur devient 1 (pour qu'on puisse contrôler la vitesse de la balle). 
             bullet.velocity = transform.TransformDirection(direction * equippedGun.BulletSpeed);
+
+            if (equippedGun.LayerName=="Green")
+            {
+                for (int j = -1; j < 2; j+=2)
+                {
+                    Rigidbody2D bullet2 = Instantiate(bulletPrefab, this.transform.position, transform.rotation) as Rigidbody2D;
+                    bullet2.gameObject.layer = LayerMask.NameToLayer(equippedGun.LayerName); // Change la layer de la balle.
+                    bullet2.GetComponent<Renderer>().material.color = Gun.ColorDictionnary[equippedGun.LayerName]; // Change la couleur de la balle. 
+                    if (isFromPlayer)
+                    {
+                        bullet2.GetComponent<BulletDestroy>().isFromPlayerGun();
+                    }
+                    Vector3 direction2 = target - this.transform.position; // Vecteur qui va vers la cible.
+                    direction2.Normalize(); // La longueur du vecteur devient 1 (pour qu'on puisse contrôler la vitesse de la balle). 
+                    direction2 = Quaternion.AngleAxis(-20*j, Vector3.forward) * direction2; 
+                    bullet2.velocity = transform.TransformDirection(direction2 * equippedGun.BulletSpeed);
+                }
+            }
             yield return new WaitForSeconds(equippedGun.BulletTimer);
         }
         isShooting = false;
