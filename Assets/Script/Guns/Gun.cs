@@ -36,9 +36,9 @@ public class Gun
     public static Dictionary<string, Gun> GunDictionnary = new Dictionary<string, Gun>()
     {
         //Clé d'accès, Données (fireRate, bulletSpeed, BulletTimer, color)
-        {"BlueGun", new Gun(1,10,0f, "Blue") },
-        {"RedGun", new Gun(5,60,0.1f, "Red") },
-        {"GreenGun", new Gun(3,30,0.2f, "Green") }
+        {"BlueGun", new Gun(1,25,0f, "Blue") },
+        {"RedGun", new Gun(3,15,0.1f, "Red") },
+        {"GreenGun", new Gun(1,15,0f, "Green") }
     };
 
     public static Dictionary<string, Color> ColorDictionnary = new Dictionary<string, Color>()

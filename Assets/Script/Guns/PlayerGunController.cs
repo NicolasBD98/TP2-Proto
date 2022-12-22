@@ -9,6 +9,9 @@ public class PlayerGunController : GunActions
     private string currentLayer;
     private bool isBlack;
 
+    bool isCoolingDown;
+    float cooldownTime;
+
     [SerializeField] Camera cam;
 
     // Start is called before the first frame update
@@ -20,6 +23,8 @@ public class PlayerGunController : GunActions
         blackBonusTimer = 0f;
         isBlack = false;
 
+        isCoolingDown = false;
+        cooldownTime = 0.7f;
     }
 
     // Update is called once per frame
@@ -50,7 +55,7 @@ public class PlayerGunController : GunActions
 
             BlackBonusTimer();
 
-            if (Input.GetMouseButtonDown(0)) //left click
+            if (Input.GetMouseButtonDown(0) && !isCoolingDown) //left click
             {
                 // Récupère la position de la souris pour viser
                 Vector3 mouseInScreen = Input.mousePosition;
@@ -58,6 +63,13 @@ public class PlayerGunController : GunActions
                 Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
                 // Tire
                 Shoot(mouseInWorld, true);
+                if (equippedGun.LayerName == "Green")
+                    cooldownTime = 0.5f;
+                else if (equippedGun.LayerName == "Red")
+                    cooldownTime = 1f;
+                else if (equippedGun.LayerName == "Blue")
+                    cooldownTime = 0.3f;
+                StartCoroutine(AttackCooldown());
             }
         }
     }
@@ -92,5 +104,12 @@ public class PlayerGunController : GunActions
                 isBlack = false;
             }
         }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        isCoolingDown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        isCoolingDown = false;
     }
 }

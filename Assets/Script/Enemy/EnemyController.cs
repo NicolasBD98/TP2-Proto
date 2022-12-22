@@ -50,7 +50,7 @@ public class EnemyController : PersonWithHealth
 
     public void LoseLife()
     {
-        takeDamage(5);
+        takeDamage(2);
     }
 
     public bool HasClearShot() //vérifie s'il y a un mur entre l'ennemi et le joueur

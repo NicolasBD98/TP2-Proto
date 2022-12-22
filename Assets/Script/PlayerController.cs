@@ -27,10 +27,10 @@ public class PlayerController : PersonWithHealth
     // Start is called before the first frame update
     void Start()
     {
-        SetupHealth(100);
+        SetupHealth(20);
 
         rb = this.gameObject.GetComponent<Rigidbody2D>();
-        initialSpeed = 5;
+        initialSpeed = 6;
         jumpHeight = 10;
         jumpCount = 1;
         isDead = false;
@@ -94,11 +94,11 @@ public class PlayerController : PersonWithHealth
             //Sprint!
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                moveSpeed *= 2f;
+                moveSpeed = initialSpeed * 2;
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                moveSpeed /= 2f;
+                moveSpeed = initialSpeed;
             }
 
         }
@@ -138,7 +138,8 @@ public class PlayerController : PersonWithHealth
         CapsuleCollider2D col = this.gameObject.GetComponent<CapsuleCollider2D>();
 
         RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, EveryColorsLayerMask);
-        if (raycastHit.collider)
+        RaycastHit2D raycastHitSave = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, PlateformeLayerMask);
+        if (raycastHitSave.collider)
         {
             savePosition = transform.position;
         }
@@ -161,17 +162,13 @@ public class PlayerController : PersonWithHealth
                 jumpCount = 1;
             }
         }
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            LoseLife();
-        }
     }
 
     public void LoseLife()
     {
         if (!isInvincible)
         {
-            takeDamage(5);
+            takeDamage(2);
         }
     }
 

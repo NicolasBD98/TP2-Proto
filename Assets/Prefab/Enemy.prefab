@@ -116,6 +116,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 0
   life: 0
+  healthBar: {fileID: 3653547696922736879}
+  isAttacking: 0
+  isCoolingDown: 0
+  myGun: {fileID: 0}
+  rangeAttack: 0
+  target: {fileID: 0}
+  PlateformeLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &4961377379097817305
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f73f1a6a11bb9b41b8004a090c8b322, type: 3}
+--- !u!1 &3653547696922736879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8533855330031336404, guid: 8f73f1a6a11bb9b41b8004a090c8b322, type: 3}
+  m_PrefabInstance: {fileID: 4961377379572368187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3653547696922736877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8533855330031336406, guid: 8f73f1a6a11bb9b41b8004a090c8b322, type: 3}

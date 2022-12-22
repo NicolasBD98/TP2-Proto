@@ -30,14 +30,11 @@ public class EnemyRouge : EnemyController
         if (target == null)
             target = GameObject.FindGameObjectWithTag("Player");
         distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
-        if ((distanceTarget < rangeAttack /*&& rangeAttack > -distanceTarget*/)&& !isCoolingDown && !isAttacking)
+        if ((distanceTarget < rangeAttack)&& !isCoolingDown && !isAttacking)
         {
-            
-            if (!HasClearShot())
-            {
-                print("ok");
-                StartCoroutine(StartAttack());
-            }
+
+
+            StartCoroutine(StartAttack());
         }
 
         if (isAttacking)

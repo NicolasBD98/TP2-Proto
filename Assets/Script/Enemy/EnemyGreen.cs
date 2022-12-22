@@ -9,12 +9,7 @@ public class EnemyGreen : EnemyController
     float speed;
     
     public float attackTimer;
-    public float cooldownTimer;
-    
-
-    
-
-    
+    public float cooldownTimer;    
 
     // Start is called before the first frame update
     void Start()
@@ -24,28 +19,38 @@ public class EnemyGreen : EnemyController
         rangeAttack = 15f;
         attackTimer = 0.8f;
         cooldownTimer = 2f;
+
+        this.SetupHealth(10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
-            target = GameObject.FindGameObjectWithTag("Player");
-        float distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
-        if (distanceTarget < rangeAttack && !isCoolingDown && !isAttacking)
+        if (life > 0)
         {
-            if (!HasClearShot())
+            if (target == null)
+                target = GameObject.FindGameObjectWithTag("Player");
+            float distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
+            if (distanceTarget < rangeAttack && !isCoolingDown && !isAttacking)
             {
-                StartCoroutine(StartAttack());
+                if (!HasClearShot())
+                {
+                    StartCoroutine(StartAttack());
+                }
             }
+
+            if (isAttacking)
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            else
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(speed, this.gameObject.GetComponent<Rigidbody2D>().velocity.y, 0);
+
+            if (speed < 0)
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            else
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-
-        if (isAttacking)
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        else
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(speed, this.gameObject.GetComponent<Rigidbody2D>().velocity.y, 0);
-
-
+        else        
+            StartCoroutine(Death());
     }
 
 
@@ -53,10 +58,12 @@ public class EnemyGreen : EnemyController
 
     IEnumerator StartAttack()
     {
+        this.gameObject.GetComponent<Animator>().SetBool("isAttacking", true);
         isAttacking = true;
         yield return new WaitForSeconds(attackTimer);
         myGun.GetComponent<EnemyGunController>().Shoot(target.transform.position,false);
         isAttacking = false;
+        this.gameObject.GetComponent<Animator>().SetBool("isAttacking", false);
         StartCoroutine(AttackCooldown());
     }
 
@@ -73,7 +80,15 @@ public class EnemyGreen : EnemyController
         {
             print("hello");
             speed *= -1;
+
+            
         }
     }
 
+    IEnumerator Death()
+    {
+        this.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
+    }
 }
