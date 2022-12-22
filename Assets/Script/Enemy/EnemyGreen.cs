@@ -9,7 +9,8 @@ public class EnemyGreen : EnemyController
     float speed;
     
     public float attackTimer;
-    public float cooldownTimer;    
+    public float cooldownTimer;
+    [SerializeField] private LayerMask WallLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -76,15 +77,11 @@ public class EnemyGreen : EnemyController
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Sol")
+        if (collision.gameObject.tag == "Wall")
         {
-            print("hello");
             speed *= -1;
-
-            
         }
     }
-
     IEnumerator Death()
     {
         this.gameObject.GetComponent<Animator>().SetBool("isDead", true);

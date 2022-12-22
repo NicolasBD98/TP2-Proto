@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : PersonWithHealth
+public class EnemyController : MonoBehaviour
 {
 
     public bool isAttacking;
@@ -10,6 +10,9 @@ public class EnemyController : PersonWithHealth
     public GameObject myGun;
     public float rangeAttack;
     public GameObject target;
+
+    int maxLife;
+    public int life;
 
     [SerializeField] private LayerMask PlateformeLayerMask;
 
@@ -33,11 +36,7 @@ public class EnemyController : PersonWithHealth
     {
 
         
-        UpdateLife();
-        if (NoLifeLeft())
-        {
-            Destroy(this.gameObject);
-        }
+       
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)
@@ -50,15 +49,20 @@ public class EnemyController : PersonWithHealth
 
     public void LoseLife()
     {
-        takeDamage(2);
+        life -= 2;
     }
 
     public bool HasClearShot() //vérifie s'il y a un mur entre l'ennemi et le joueur
     {
-        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
-
+        CapsuleCollider2D col = this.gameObject.GetComponent<CapsuleCollider2D>();
         RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, target.transform.position - this.transform.position, rangeAttack, PlateformeLayerMask);
         Debug.DrawRay(this.gameObject.transform.position, target.transform.position - this.transform.position, Color.red);
         return hit.collider;
+    }
+
+    public void SetupHealth(int newMaxLife)
+    {
+        maxLife = newMaxLife;
+        life = maxLife;
     }
 }
