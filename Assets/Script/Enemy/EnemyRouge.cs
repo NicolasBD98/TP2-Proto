@@ -9,6 +9,7 @@ public class EnemyRouge : EnemyController
     public float attackTimer;
     public float cooldownTimer;
     public float distanceTarget;
+    public float waitTime;
 
 
 
@@ -17,40 +18,54 @@ public class EnemyRouge : EnemyController
     // Start is called before the first frame update
     void Start()
     {
-
+        this.SetupHealth(5);
+        
+        waitTime = 3f;
         speed = 3f;
-        rangeAttack = 15f;
-        attackTimer = 0.8f;
+        rangeAttack = 10f;
+        attackTimer = 0.3f;
         cooldownTimer = 2f;
+
+        StartCoroutine(Wait());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
-            target = GameObject.FindGameObjectWithTag("Player");
-        distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
-        if ((distanceTarget < rangeAttack)&& !isCoolingDown && !isAttacking)
+        if (life > 0)
         {
+            if (target == null)
+                target = GameObject.FindGameObjectWithTag("Player");
+            distanceTarget = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
+            if ((distanceTarget < rangeAttack) && !isCoolingDown && !isAttacking)
+            {
 
 
-            StartCoroutine(StartAttack());
+                StartCoroutine(StartAttack());
+            }
+
+            if (isAttacking)
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            else
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(speed, this.gameObject.GetComponent<Rigidbody2D>().velocity.y, 0);
         }
-
-        if (isAttacking)
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         else
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(speed, this.gameObject.GetComponent<Rigidbody2D>().velocity.y, 0);
-
-
+            Dies();
+        
     }
 
-
+    IEnumerator Dies()
+    {
+        this.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
+    }
 
 
     IEnumerator StartAttack()
     {
         isAttacking = true;
+        this.gameObject.GetComponent<Animator>().SetTrigger("Attack!");
         yield return new WaitForSeconds(attackTimer);
         myGun.GetComponent<EnemyGunController>().Shoot(target.transform.position, false);
         isAttacking = false;
@@ -64,12 +79,16 @@ public class EnemyRouge : EnemyController
         isCoolingDown = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator Wait()
     {
-        if (collision.gameObject.tag == "Sol")
-        {
-            print("hello");
-            speed *= -1;
-        }
+        yield return new WaitForSeconds(waitTime);
+        ChangeDirection();
     }
+
+    void ChangeDirection()
+    {
+        speed *= -1;
+        StartCoroutine(Wait());
+    }
+
 }

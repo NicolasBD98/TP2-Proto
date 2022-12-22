@@ -27,7 +27,7 @@ public class EnemyBlue : EnemyController
 
 
         startJumpAnim = 0.5f;
-        nbJumpTurn = 4;
+        nbJumpTurn = 3;
     }
 
     // Update is called once per frame
@@ -47,7 +47,12 @@ public class EnemyBlue : EnemyController
             else
             {
                 StartCoroutine(StartJump());
-
+                nbJumpTurn--;
+                if (nbJumpTurn == 0)
+                {
+                    speed *= -1;
+                    nbJumpTurn = 2;
+                }
                 cooldownTimer = jumpTimer;
                 if (distanceTarget < rangeAttack && !isAttacking /*&& isCoolingDown*/)
                 {
@@ -85,30 +90,13 @@ public class EnemyBlue : EnemyController
     {
         if (collision.gameObject.tag == "Sol")
         {
-            if (isGrounded())
-            {
-                this.gameObject.GetComponent<Animator>().SetBool("hitGround",true);
-                nbJumpTurn--;
-                if (nbJumpTurn == 0)
-                {
-                    speed *= -1;
-                    nbJumpTurn = 3;
-                }
-            }
-            else
-            {
-                speed *= -1;
-                nbJumpTurn = 4;
-            }
+
+            if (collision.GetContact(0).point.y < this.gameObject.transform.position.y)
+            { 
+                this.gameObject.GetComponent<Animator>().SetBool("hitGround", true);
+                
+            }           
         }
-    }
-
-    private bool isGrounded() //détecte si le personnage est par dessus le sol
-    {
-        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
-
-        RaycastHit2D raycastHit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.5f, WallLayerMask);
-        return raycastHit.collider != null;
     }
 
     IEnumerator StartJump()
