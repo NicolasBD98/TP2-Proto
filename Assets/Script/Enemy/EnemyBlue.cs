@@ -97,6 +97,10 @@ public class EnemyBlue : EnemyController
                 
             }           
         }
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().LoseLife();
+        }
     }
 
     IEnumerator StartJump()

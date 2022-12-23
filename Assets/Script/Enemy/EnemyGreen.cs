@@ -81,6 +81,10 @@ public class EnemyGreen : EnemyController
         {
             speed *= -1;
         }
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().LoseLife();
+        }
     }
     IEnumerator Death()
     {
