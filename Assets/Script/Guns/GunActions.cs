@@ -30,7 +30,7 @@ public class GunActions : MonoBehaviour
             direction.Normalize(); // La longueur du vecteur devient 1 (pour qu'on puisse contrôler la vitesse de la balle). 
             bullet.velocity = transform.TransformDirection(direction * equippedGun.BulletSpeed);
 
-            if (equippedGun.LayerName=="Green")
+            if (equippedGun.BulletSpeed == 15f && equippedGun.FireRate == 1f)
             {
                 for (int j = -1; j < 2; j+=2)
                 {

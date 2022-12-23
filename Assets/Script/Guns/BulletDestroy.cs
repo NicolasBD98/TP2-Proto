@@ -22,7 +22,7 @@ public class BulletDestroy : MonoBehaviour
     {
         if (fromPlayerGun) //On veut que les balles ennemies puissent toucher le joueur. 
         {
-            if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Shield"))
+            if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Shield") && !collision.gameObject.CompareTag("Bullet"))
                 {
                     Destroy(this.gameObject);
                 }
