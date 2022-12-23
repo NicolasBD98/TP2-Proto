@@ -20,7 +20,7 @@ public class LoadScene : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
     }
 }
