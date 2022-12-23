@@ -17,7 +17,7 @@ public class EnemyBlue : EnemyController
     // Start is called before the first frame update
     void Start()
     {
-        this.SetupHealth(20);
+        this.SetupHealth(8);
         jumpforce = 7f;
         speed = 0.55f;
         rangeAttack = 10f;
@@ -86,6 +86,7 @@ public class EnemyBlue : EnemyController
     //    isCoolingDown = false;
     //}
 
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Sol")

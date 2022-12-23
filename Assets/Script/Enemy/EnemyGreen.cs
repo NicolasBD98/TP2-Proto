@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyGreen : EnemyController
 {
@@ -21,7 +20,7 @@ public class EnemyGreen : EnemyController
         attackTimer = 0.8f;
         cooldownTimer = 2f;
 
-        this.SetupHealth(10);
+        this.SetupHealth(5);
     }
 
     // Update is called once per frame
@@ -75,17 +74,23 @@ public class EnemyGreen : EnemyController
         isCoolingDown = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
             speed *= -1;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerController>().LoseLife();
         }
     }
+  
     IEnumerator Death()
     {
         this.gameObject.GetComponent<Animator>().SetBool("isDead", true);

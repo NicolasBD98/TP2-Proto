@@ -180,7 +180,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Barre d'espace => Sauter\nMaj => Courir\nTab => Ouvrir le menu de \nconsommables"
+  m_text: "Barre d'espace => Sauter\nMaj => Courir\nTab => Ouvrir le menu de \nconsommables\nC
+    => ramasser le cube rouge"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba04836dc9fb4ef4688d17c7a41be976, type: 2}
   m_sharedMaterial: {fileID: -7251192025664521486, guid: ba04836dc9fb4ef4688d17c7a41be976, type: 2}
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -34.8
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -291,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.9277, y: 143}
+  m_AnchoredPosition: {x: -4, y: 159}
   m_SizeDelta: {x: 803.39, y: 49.0417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235143995
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: monde, tout est en couleur. Vous aurez l'occasion
+  m_text: ' tout est en couleur. En changeant de couleur,vous pourrez'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
   m_sharedMaterial: {fileID: -7822318643040354705, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
@@ -377,7 +378,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 4.6614075, w: 0}
+  m_margin: {x: -23.082611, y: 0, z: -18.421173, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -795,7 +796,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -25.23
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1000,7 +1001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.9277, y: 93.958}
+  m_AnchoredPosition: {x: -2.9277, y: 120}
   m_SizeDelta: {x: 811.826, y: 49.0417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607272381
@@ -1023,7 +1024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: de changer de couleur afin de parcourir le monde.
+  m_text: " passer \xE0 travers les plateformes et projectiles de la m\xEAme couleur"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
   m_sharedMaterial: {fileID: -7822318643040354705, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
@@ -1086,7 +1087,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 2.106842, y: 0, z: -2.2462158, w: 0}
+  m_margin: {x: -23.8797, y: 0, z: -31.182068, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1157,7 +1158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bienvenue dans le monde de rubixland. Dans ce '
+  m_text: Bienvenue dans le monde de Paintland. Dans ce monde,
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
   m_sharedMaterial: {fileID: -7822318643040354705, guid: 7a056544c8bab45408b6a171c03ece56, type: 2}
@@ -1220,7 +1221,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 3.638214, y: 1.6479492, z: 2.6484375, w: -0.7753601}
+  m_margin: {x: -33.02234, y: 1.6479492, z: -36.7276, w: -0.7753601}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

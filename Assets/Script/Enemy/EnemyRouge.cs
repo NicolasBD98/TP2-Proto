@@ -18,7 +18,7 @@ public class EnemyRouge : EnemyController
     // Start is called before the first frame update
     void Start()
     {
-        this.SetupHealth(5);
+        this.SetupHealth(3);
         
         waitTime = 3f;
         speed = 3f;
@@ -50,7 +50,7 @@ public class EnemyRouge : EnemyController
                 this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(speed, this.gameObject.GetComponent<Rigidbody2D>().velocity.y, 0);
         }
         else
-            Dies();
+            StartCoroutine(Dies());
         
     }
 

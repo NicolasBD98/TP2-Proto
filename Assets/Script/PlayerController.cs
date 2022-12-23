@@ -33,7 +33,7 @@ public class PlayerController : PersonWithHealth
         SetupHealth(20);
 
         rb = this.gameObject.GetComponent<Rigidbody2D>();
-        initialSpeed = 6;
+        initialSpeed = 10;
         jumpHeight = 10;
         jumpCount = 1;
         isDead = false;
@@ -106,6 +106,9 @@ public class PlayerController : PersonWithHealth
                 moveSpeed = initialSpeed;
             }
 
+            
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = this.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0;
+            
         }
 
         //Regarde si on est tombé
