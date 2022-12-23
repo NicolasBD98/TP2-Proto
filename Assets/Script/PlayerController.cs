@@ -54,6 +54,7 @@ public class PlayerController : PersonWithHealth
         {
             Debug.Log("Player dead.");
             deadMenu.SetActive(true);
+            Time.timeScale = 0.0f;
         }
 
         //Gère le mouvement
